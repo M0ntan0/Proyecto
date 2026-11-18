@@ -458,3 +458,33 @@ if ("IntersectionObserver" in window) {
     mostrarAuth();
   }
 })();
+
+/* Ir a editar el perfil: se usa al tocar la foto o el nombre del encabezado */
+function irAEditarPerfil() {
+  const seccion = $("perfil");
+  const tarjeta = seccion.querySelector(".profile-card");
+
+  seccion.scrollIntoView({ behavior: "smooth", block: "start" });
+
+  /* Resalta un momento la tarjeta del perfil y deja el foco en "Cambiar foto" */
+  tarjeta.style.transition = "border-color .4s, box-shadow .4s";
+  tarjeta.style.borderColor = "var(--white-60)";
+  tarjeta.style.boxShadow = "0 0 0 3px rgba(191,198,212,.18)";
+  setTimeout(() => {
+    tarjeta.style.borderColor = "";
+    tarjeta.style.boxShadow = "";
+  }, 1500);
+  $("btn-avatar").focus({ preventScroll: true });
+}
+
+/* Hace que la foto y el nombre del encabezado funcionen como un botón */
+const zonaUsuario = document.querySelector(".header-user");
+zonaUsuario.setAttribute("role", "button");
+zonaUsuario.setAttribute("tabindex", "0");
+zonaUsuario.setAttribute("title", "Editar mi perfil");
+zonaUsuario.setAttribute("aria-label", "Editar mi perfil");
+zonaUsuario.style.cursor = "pointer";
+zonaUsuario.addEventListener("click", irAEditarPerfil);
+zonaUsuario.addEventListener("keydown", (e) => {
+  if (e.key === "Enter" || e.key === " ") { e.preventDefault(); irAEditarPerfil(); }
+});
