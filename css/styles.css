@@ -1,4 +1,3 @@
-
 :root{
   /*Paleta de colores*/
   /* Negros */
@@ -103,6 +102,15 @@ button,input,textarea,select{font:inherit}
 
 .content-section{padding-top:44px;scroll-margin-top:96px}
 .content-section h2{margin:4px 0 18px;font-family:Georgia,"Times New Roman",serif;font-size:1.65rem;font-weight:normal}
+
+/* Detalle: línea de luz en las tarjetas y barra en el menú */
+.post-card{position:relative;overflow:hidden}
+.post-card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--white-60),transparent);opacity:0;transform:scaleX(.3);transition:opacity .3s,transform .4s}
+.post-card:hover::before{opacity:1;transform:scaleX(1)}
+.post-card:hover{box-shadow:0 10px 30px rgba(0,0,0,.35)}
+
+.nav-link{position:relative}
+.nav-link.active::before{content:"";position:absolute;left:0;top:20%;bottom:20%;width:3px;border-radius:0 3px 3px 0;background:var(--white-60)}
 
 /* Publicaciones */
 .post-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;align-items:start}
