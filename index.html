@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elysium</title>
+<link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<!--Inicio de sesión-->
+<div id="auth-view" class="auth-page" hidden>
+  <main class="auth-layout">
+    <span class="brand">Elysium</span>
+
+    <section class="auth-card">
+
+      <!-- Iniciar sesión -->
+      <form id="login-form">
+        <p class="eyebrow">Bienvenido de nuevo</p>
+        <h1>Iniciar sesión</h1>
+        <p class="intro">Entra a tu cuenta para seguir explorando libros y compartir con otros lectores.</p>
+
+        <div class="form-field">
+          <label for="login-email">Correo electrónico</label>
+          <input type="email" id="login-email" autocomplete="email" placeholder="nombre@correo.com" required>
+        </div>
+        <div class="form-field">
+          <label for="login-password">Contraseña</label>
+          <input type="password" id="login-password" autocomplete="current-password" placeholder="Tu contraseña" required>
+        </div>
+        <p class="form-message" id="login-message" aria-live="polite"></p>
+        <button class="button button-primary button-full" type="submit">Iniciar sesión</button>
+
+        <p class="auth-switch">¿No tienes cuenta? <a id="go-register" role="button" tabindex="0">Crear cuenta</a></p>
+      </form>
+
+      <!-- Crear cuenta -->
+      <form id="register-form" hidden>
+        <p class="eyebrow">Forma parte de la familia de Elysium</p>
+        <h1>Crear cuenta</h1>
+        <p class="intro">Únete a la familia de Elysium y explora un mundo lleno de libros y nuevas experiencias.</p>
+
+        <div class="form-field">
+          <label for="register-name">Nombre completo</label>
+          <input type="text" id="register-name" autocomplete="name" placeholder="Escribe tu nombre" required>
+        </div>
+        <div class="form-field">
+          <label for="register-email">Correo electrónico</label>
+          <input type="email" id="register-email" autocomplete="email" placeholder="nombre@correo.com" required>
+        </div>
+        <div class="form-field">
+          <label for="register-password">Contraseña</label>
+          <input type="password" id="register-password" minlength="8" autocomplete="new-password" placeholder="Mínimo 8 caracteres" required>
+        </div>
+        <div class="form-field">
+          <label for="confirm-password">Confirmar contraseña</label>
+          <input type="password" id="confirm-password" minlength="8" autocomplete="new-password" placeholder="Repite la contraseña" required>
+        </div>
+        <p class="form-message" id="register-message" aria-live="polite"></p>
+        <button class="button button-primary button-full" type="submit">Crear cuenta</button>
+
+        <p class="auth-switch">¿Ya tienes cuenta? <a id="go-login" role="button" tabindex="0">Iniciar sesión</a></p>
+      </form>
+    </section>
+
+    <p class="auth-footer">Elysium es una comunidad amante de los libros y las nuevas historias. Únete a la familia y comparte con muchos amantes de la literatura tus experiencias, reseñas y opiniones.</p>
+  </main>
+</div>
+
+<!--Inicio del sitio -->
+<div id="app-view" class="app-page" hidden>
+
+  <!-- Inicio -->
+  <header class="app-header">
+    <a class="brand" href="#inicio">Elysium</a>
+    <div class="header-actions">
+      <input class="search-input" id="search-posts" type="search" placeholder="Buscar publicaciones..." aria-label="Buscar publicaciones">
+      <div class="header-user">
+        <span id="header-avatar" class="avatar avatar-sm" aria-hidden="true"></span>
+        <span id="user-label" class="user-label">Mi cuenta</span>
+      </div>
+      <button id="logout-button" class="button button-secondary" type="button">Cerrar sesión</button>
+    </div>
+  </header>
+
+  <!-- Menú -->
+  <nav class="sidebar" aria-label="Navegación principal">
+    <p class="sidebar-label">MENÚ</p>
+    <a class="nav-link active" href="#inicio">Inicio</a>
+    <a class="nav-link" href="#publicaciones">Publicaciones</a>
+    <a class="nav-link" href="#crear-publicacion">Crear publicación</a>
+    <a class="nav-link" href="#perfil">Mi perfil</a>
+    <a class="nav-link" href="#acerca-de">Acerca de</a>
+  </nav>
+
+  <main class="app-main">
+    <section id="inicio" class="hero">
+      <p class="eyebrow">ELYSIUM LIBRARY</p>
+      <h1>Descubra Su <br>Siguiente Historia</h1>
+      <p>Explora nuevas historias, comparte tus opiniones y libros favoritos, y descubre tu próxima lectura junto a otros lectores.</p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="#publicaciones">Explorar publicaciones</a>
+        <a class="button button-secondary" href="#crear-publicacion">Crear publicación</a>
+      </div>
+    </section>
+
+    <!-- Publicaciones -->
+    <section id="publicaciones" class="content-section">
+      <p class="eyebrow">COMUNIDAD</p>
+      <h2>Publicaciones recientes</h2>
+      <div class="post-grid" id="post-grid">
+       
+        <!--Sirve para cambiar lo que dicen las publicaciones y comentarios y tambiem para agregarles foto de perfil-->
+        <article class="post-card" data-id="p1">
+
+          <p class="post-category">Reseña</p>
+          <h3>Cien años de soledad, una relectura</h3>
+          <p class="post-text">Lo leí otra vez después de diez años y me sorprendió cuántos detalles se me habían escapado.</p>
+          <div class="post-meta">
+            <div class="post-author">
+              <span class="avatar avatar-sm" data-foto="Imagenes/Tignari.jpg" aria-hidden="true"></span>
+              <span class="author-name">Russ</span>
+            </div>
+<!--Likes de la publicaion-->
+            <div class="post-actions">
+              <button type="button" class="meta-btn like-btn" data-likes="567" aria-label="Me gusta">♡ 567</button>
+              <button type="button" class="meta-btn comment-btn" aria-label="Ver comentarios">💬 4</button>
+            </div>
+          </div>
+          <div class="comments" hidden>
+            <div class="comment-list">
+              <div class="comment">
+                <!--Comentarios-->
+              </div>
+              <div class="comment">
+                <span class="avatar avatar-sm" data-foto="Imagenes/Yagami.jpg" aria-hidden="true"></span>
+
+                <div class="comment-body">
+                  <span class="comment-name">light yagami</span>
+                  <span class="comment-text">¿Con cuál de los Buendía te quedas?</span>
+                </div>
+              </div>
+              <div class="comment">
+                <span class="avatar avatar-sm" data-foto="/Imagenes/Duolingo.jpg" aria-hidden="true"></span>
+                <div class="comment-body">
+                  <span class="comment-name">Duolingo</span>
+                  <span class="comment-text">Con Úrsula, sin dudarlo.</span>
+                </div>
+              </div>
+              <div class="comment">
+                <span class="avatar avatar-sm" data-foto="/Imagenes/leopardo.jpg" aria-hidden="true"></span>
+                <div class="comment-body">
+                  <span class="comment-name">Blanca Nieves</span>
+                  <span class="comment-text">Me la anoto para estas vacaciones.</span>
+                </div>
+              </div>
+              <div class="comment">
+                <span class="avatar avatar-sm" data-foto="/Imagenes/capibara.jpg" aria-hidden="true"></span>
+                <div class="comment-body">
+                  <span class="comment-name">Dracula</span>
+                  <span class="comment-text">Es de esos libros que cambian cada vez que los lees.</span>
+                </div>
+              </div>
+               <div class="comment">
+                <span class="avatar avatar-sm" data-foto="/Imagenes/Duolingo.jpg" aria-hidden="true"></span>
+                <div class="comment-body">
+                  <span class="comment-name">Duolingo</span>
+                  <span class="comment-text">Interesante</span>
+                </div>
+            </div>
+            <form class="comment-form">
+              <input type="text" placeholder="Escribe un comentario..." maxlength="300" aria-label="Escribe un comentario">
+              <button type="submit" class="button button-secondary">Comentar</button>
+            </form>
+          </div>
+        </article>
+<!--Otra publicacion-->
+        <article class="post-card" data-id="p2">
+          <p class="post-category">Recomendación</p>
+          <h3>Dune, para quien ama la ciencia ficción</h3>
+          <p class="post-text">Recomiendo este libro si te gustan los mundos enormes, la política y las historias que tardan en explotar.</p>
+          <div class="post-meta">
+            <div class="post-author">
+              <span class="avatar avatar-sm" data-foto="Imagenes/Yagami.jpg" aria-hidden="true"></span>
+              <span class="author-name">light yagami</span>
+            </div>
+            <div class="post-actions">
+              <button type="button" class="meta-btn like-btn" data-likes="17" aria-label="Me gusta">♡ 17</button>
+              <button type="button" class="meta-btn comment-btn" aria-label="Ver comentarios">💬 4</button>
+            </div>
+          </div>
+          <!--Comentarios de la publicacion-->
+          <div class="comments" hidden>
+            <div class="comment-list">
+              <div class="comment">
+                <span class="avatar avatar-sm" data-foto="/Imagenes/L.jpg" aria-hidden="true"></span>
+                <div class="comment-body">
+                  <span class="comment-name">L</span>
+                  <span class="comment-text">Eres Kira ¿verdad?</span>
+                </div>
+              </div>
+              <div class="comment">
+                <span class="avatar avatar-sm" data-foto="/Imagenes/Misa.jpg" aria-hidden="true"></span>
+                <div class="comment-body">
+                  <span class="comment-name">Misa Amane</span>
+                  <span class="comment-text">Muy buen librooo</span>
+                </div>
+              </div>
+              <div class="comment">
+                <span class="avatar avatar-sm" data-foto="/Imagenes/Unicornio Feliz.jpg" aria-hidden="true"></span>
+                <div class="comment-body">
+                  <span class="comment-name">Unicornio Feliz</span>
+                  <span class="comment-text">Yo diría que hasta el tercero sin problema.</span>
+                </div>
+              </div>
+              <div class="comment">
+                <span class="avatar avatar-sm" data-foto="/Imagenes/ola.jpg" aria-hidden="true"></span>
+                <div class="comment-body">
+                  <span class="comment-name">Tomate.exe</span>
+                  <span class="comment-text">La película me dejó con ganas del libro.</span>
+                </div>
+              </div>
+            </div>
+            <form class="comment-form">
+              <input type="text" placeholder="Escribe un comentario..." maxlength="300" aria-label="Escribe un comentario">
+              <button type="submit" class="button button-secondary">Comentar</button>
+            </form>
+          </div>
+        </article>
+
+        <article class="post-card" data-id="p3">
+          <p class="post-category">Comunidad</p>
+          <h3>Mi libro favorito de fantasía</h3>
+          <p class="post-text">Me gustaría compartir El nombre del viento: una historia que se lee con calma y se disfruta en cada página.</p>
+          <div class="post-meta">
+            <div class="post-author">
+              <span class="avatar avatar-sm" data-foto="Imagenes/MAPACHE.gif" aria-hidden="true"></span>
+              <span class="author-name">Elias</span>
+            </div>
+            <div class="post-actions">
+              <button type="button" class="meta-btn like-btn" data-likes="31" aria-label="Me gusta">♡ 31</button>
+              <button type="button" class="meta-btn comment-btn" aria-label="Ver comentarios">💬 5</button>
+            </div>
+          </div>
+          <div class="comments" hidden>
+            <div class="comment-list">
+              <div class="comment">
+                <span class="avatar avatar-sm" data-foto="/Imagenes/Perrito.jpg" aria-hidden="true"></span>
+                <div class="comment-body">
+                  <span class="comment-name">Equipo de tarbajo</span>
+                  <span class="comment-text">¡Qué buena elección! Ya espero el tercer libro.</span>
+                </div>
+              </div>
+              <div class="comment">
+                <span class="avatar avatar-sm" data-foto="/Imagenes/Gatito.jpg" aria-hidden="true"></span>
+                <div class="comment-body">
+                  <span class="comment-name">Tapa</span>
+                  <span class="comment-text">Kvothe me parece insoportable y adorable a la vez.</span>
+                </div>
+              </div>
+              <div class="comment">
+                <span class="avatar avatar-sm" data-foto="/Imagenes/Duolingo.jpg" aria-hidden="true"></span>
+                <div class="comment-body">
+                  <span class="comment-name">Duolingo</span>
+                  <span class="comment-text">Lo tengo en mi lista desde hace meses.</span>
+                </div>
+              </div>
+              <div class="comment">
+                <span class="avatar avatar-sm" data-foto="/Imagenes/L.jpg" aria-hidden="true"></span>
+                <div class="comment-body">
+                  <span class="comment-name">L</span>
+                  <span class="comment-text">wow.</span>
+                </div>
+              </div>
+              <div class="comment">
+                <span class="avatar avatar-sm" data-foto="/Imagenes/Misa.jpg" aria-hidden="true"></span>
+                <div class="comment-body">
+                  <span class="comment-name">Misa Amane</span>
+                  <span class="comment-text">La escena de la música es mi favorita.</span>
+                </div>
+              </div>
+            </div>
+            <form class="comment-form">
+              <input type="text" placeholder="Escribe un comentario..." maxlength="300" aria-label="Escribe un comentario">
+              <button type="submit" class="button button-secondary">Comentar</button>
+            </form>
+          </div>
+        </article>
+
+        <article class="post-card" data-id="p4">
+          <p class="post-category">Discusión</p>
+          <h3>¿Libro físico o digital?</h3>
+          <p class="post-text">Últimamente leo más en el celular, pero extraño el olor de las páginas. ¿Ustedes qué prefieren?</p>
+          <div class="post-meta">
+            <div class="post-author">
+              <span class="avatar avatar-sm" data-foto="Imagenes/HAPPY.JPG" aria-hidden="true"></span>
+              <span class="author-name">Andrés Mora</span>
+            </div>
+            <div class="post-actions">
+              <button type="button" class="meta-btn like-btn" data-likes="12" aria-label="Me gusta">♡ 12</button>
+              <button type="button" class="meta-btn comment-btn" aria-label="Ver comentarios">💬 4</button>
+            </div>
+          </div>
+          <!--Comentarios-->
+          <div class="comments" hidden>
+            <div class="comment-list">
+              <div class="comment">
+                <span class="avatar avatar-sm" data-foto="/Imagenes/L.jpg" aria-hidden="true"></span>
+                <div class="comment-body">
+                  <span class="comment-name">L</span>
+                  <span class="comment-text">Físico, siempre. Necesito subrayar.</span>
+                </div>
+              </div>
+              <div class="comment">
+                <span class="avatar avatar-sm" data-foto="/Imagenes/L.jpg" aria-hidden="true"></span>
+                <div class="comment-body">
+                  <span class="comment-name">L</span>
+                  <span class="comment-text">¿Sabes quien es kira?</span>
+                </div>
+              </div>
+              <div class="comment">
+                <span class="avatar avatar-sm" data-foto="/Imagenes/yagami.jpg" aria-hidden="true"></span>
+                <div class="comment-body">
+                  <span class="comment-name">Light Yagami</span>
+                  <span class="comment-text">Mitad y mitad, según el libro.</span>
+                </div>
+              </div>
+              <div class="comment">
+                <span class="avatar avatar-sm" data-foto="/Imagenes/Misa.jpg" aria-hidden="true"></span>
+                <div class="comment-body">
+                  <span class="comment-name">Misa Amane</span>
+                  <span class="comment-text">Para viajar, digital. Para el sillón, papel.</span>
+                </div>
+              </div>
+            </div>
+
+            <!--Sirve para escribir un comentario en una publicacion, hay varios en las otras publicaciones-->
+            <form class="comment-form">
+              <input type="text" placeholder="Escribe un comentario..." maxlength="300" aria-label="Escribe un comentario">
+              <button type="submit" class="button button-secondary">Comentar</button>
+            </form>
+          </div>
+        </article>
+
+        <!--Sirve en caso de que no haya publicaiones con la categoria que se busca-->
+      </div>
+      <p class="empty-message" id="empty-search" hidden>No se encontraron publicaciones.</p>
+    </section>
+
+    <!--Sirve para crear nuevas publicaciones-->
+    <section id="crear-publicacion" class="content-section">
+      <p class="eyebrow">COMPARTE CON LA COMUNIDAD</p>
+      <h2>Crear publicación</h2>
+      <form id="post-form" class="post-form">
+        <div class="form-field">
+          <label for="post-title">Título</label>
+          <input id="post-title" type="text" placeholder="¿Qué quieres compartir?" required>
+        </div>
+        <div class="form-field">
+          <label for="post-category">Categoría</label>
+          <select id="post-category">
+            <option>Reseña</option>
+            <option>Recomendación</option>
+            <option>Discusión</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="post-content">Contenido</label>
+          <textarea id="post-content" rows="4" placeholder="Escribe tu publicación..." required></textarea>
+        </div>
+        <p class="form-message" id="post-message" aria-live="polite"></p>
+        <button class="button button-primary" type="submit">Publicar</button>
+      </form>
+    </section>
+
+    <!--Sirve para editar la parte del perfil del usuario-->
+    <section id="perfil" class="content-section">
+      <p class="eyebrow">TU CUENTA</p>
+      <h2>Mi perfil</h2>
+
+      <div class="profile-card">
+        <div class="profile-banner" id="profile-banner"></div>
+        <div class="profile-body">
+          <div class="profile-top">
+            <span id="profile-avatar" class="avatar avatar-lg" aria-label="Foto de perfil"></span>
+            <div class="profile-actions">
+              <button class="button button-secondary" type="button" id="btn-avatar">Cambiar foto de perfil</button>
+              <button class="button button-secondary" type="button" id="btn-banner">Cambiar banner</button>
+              <button class="button button-secondary" type="button" id="btn-reset-images">Quitar imágenes</button>
+            </div>
+          </div>
+          <h3 class="profile-name" id="profile-name">Mi cuenta</h3>
+          <p class="profile-email" id="profile-email"></p>
+          <p class="profile-stats" id="profile-stats"></p>
+          <p class="form-message" id="profile-message" aria-live="polite" style="margin-top:14px;margin-bottom:0"></p>
+
+          <input type="file" id="file-avatar" accept="image/*" hidden>
+          <input type="file" id="file-banner" accept="image/*" hidden>
+        </div>
+      </div>
+    </section>
+
+    <!--Historia de Elyysium, inspiraciones, etc-->
+    <section id="acerca-de" class="content-section about-section">
+      <p class="eyebrow">SOBRE EL PROYECTO</p>
+      <h2>Historia de Elysium</h2>
+      <p>...</p>
+    </section>
+
+    <footer class="app-footer"><p>© 2026 Elysium · Maria Jimena Parra Montano.</p></footer>
+  </main>
+</div>
+
+  <!--Sirve junto con el js para que se vean las imagenes de los comentarios y las publicaciones-->
+  <template id="plantilla-publicacion">
+    <article class="post-card de-usuario" data-id="">
+      <p class="post-category"></p>
+      <h3></h3>
+      <p class="post-text"></p>
+      <div class="post-meta">
+        <div class="post-author">
+          <span class="avatar avatar-sm" aria-hidden="true"></span>
+          <span class="author-name"></span>
+        </div>
+        <div class="post-actions">
+          <button type="button" class="meta-btn like-btn" data-likes="0" aria-label="Me gusta">♡ 0</button>
+          <button type="button" class="meta-btn comment-btn" aria-label="Ver comentarios">💬 0</button>
+        </div>
+      </div>
+      <div class="comments" hidden>
+        <div class="comment-list"></div>
+        <form class="comment-form">
+          <input type="text" placeholder="Escribe un comentario..." maxlength="300" aria-label="Escribe un comentario">
+          <button type="submit" class="button button-secondary">Comentar</button>
+        </form>
+      </div>
+    </article>
+  </template>
+
+  <template id="plantilla-comentario">
+    <div class="comment de-usuario">
+      <span class="avatar avatar-sm" aria-hidden="true"></span>
+      <div class="comment-body">
+        <span class="comment-name"></span>
+        <span class="comment-text"></span>
+      </div>
+    </div>
+  </template>
+
+<script src="/js/script.js"></script>
+</body>
+</html>
+
