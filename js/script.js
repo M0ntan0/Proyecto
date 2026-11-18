@@ -445,13 +445,12 @@ if ("IntersectionObserver" in window) {
         a.classList.toggle("active", a.getAttribute("href") === "#" + entrada.target.id));
     });
   }, { rootMargin: "-30% 0px -60% 0px" });
-  secciones.forEach((s) => s && observador.observe(s));
+  secciones.forEach((s) => s && observador.observe(s));4
 }
-
 /*Inicio*/
 (function iniciar() {
   const sesion = leerSesion();
-  const cuentas = leer(LS_CUENTAS, {});
+  const cuentas = leer(LS_CUENTAS, {})
   if (sesion && cuentas[sesion.correo]) mostrarApp();
   else {
     sessionStorage.removeItem(SS_SESION);
